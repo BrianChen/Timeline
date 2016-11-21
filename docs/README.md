@@ -1,7 +1,5 @@
 # README
 
-Timeline is a mobile iOS application that allows users to record daily journals.  Users will be able to look back and see what they have written in the past. This application will be designed with React Native in redux architecture.  
-
 ## Minimum Viable Product
 
 Timeline is a iOS mobile application that allows users to record daily journals. It utilizes React Native with a Redux architectural framework.
@@ -10,7 +8,7 @@ Timeline is a iOS mobile application that allows users to record daily journals.
 - [ ] Add Photos to records
 - [ ] Enable use of different fonts/text styling
 
-###Wireframes
+##Wireframes
 
 ![wireframes](https://raw.github.com/BrianChen/Timeline/master/docs/wireframes/welcome-page.png)
 ![wireframes](https://raw.github.com/BrianChen/Timeline/master/docs/wireframes/dashboard-page.png)
