@@ -9,6 +9,7 @@ import {
   ListView
 } from 'react-native';
 import Firebase from 'firebase';
+var NewNoteIcon = require('./img/new_note_icon.png');
 
 export default class TimeLine extends React.Component {
 
@@ -86,8 +87,11 @@ export default class TimeLine extends React.Component {
       <View style={styles.appContainer}>
         <View style={styles.titleView}>
           <Text style={styles.titleText}>
-            My Todos
+            Timeline
           </Text>
+          <Image
+          source={NewNoteIcon}
+          />
         </View>
         <View style={styles.inputContainer}>
           <TextInput style={styles.input} onChangeText={(text) => this.setState({newTodo: text})} value={this.state.newTodo}/>
