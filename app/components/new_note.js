@@ -17,6 +17,7 @@ class NewNote extends React.Component {
     //myFirebaseRef, text, date
     super(props);
     this.state = {
+      id: this.props.id,
       text: this.props.text,
       date: this.props.date,
     };
@@ -32,11 +33,18 @@ class NewNote extends React.Component {
   }
 
   handleDone() {
-    if (this.state.text !== ""){
-      this.itemsRef.push({
+    Keyboard.dismiss();
+    let id = this.state.id;
+    if (id == ""){
+      let newRef = this.itemsRef.push({
         text: this.state.text,
         date: this.state.date
       })
+      this.state.id = newRef.key;
+    } else {
+      let id = this.state.id;
+      let note = this.props.myFirebaseRef.child('entries').child(id);
+      note.update({text: this.state.text});
     }
   }
 
@@ -47,7 +55,7 @@ class NewNote extends React.Component {
   render() {
     let date = new Date().toString();
     let dateArray = date.split(" ");
-    let newDate = dateArray.splice(1, 4);
+    let newDate = dateArray.splice(1, 3);
     let newDateString = newDate.join(" ");
     this.state.date = newDateString;
     return (
@@ -85,7 +93,7 @@ const styles = StyleSheet.create({
   },
   dateText:{
     padding: 10,
-    marginLeft: 110,
+    marginLeft: 140,
   },
   img:{
     flex: 1,

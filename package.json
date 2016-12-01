@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "firebase": "^3.6.1",
+    "rc-swipeout": "^1.1.5",
     "react": "15.3.2",
     "react-native": "0.37.0",
     "react-native-keyboardevents": "^0.4.5",
+    "react-native-swipeout": "https://github.com/dancormier/react-native-swipeout.git",
     "react-native-vector-icons": "^3.0.0",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0"

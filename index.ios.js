@@ -26,23 +26,17 @@ export default class TimeLine extends React.Component {
   }
 
   handleNewNote() {
-    this.refs.nav.push({
-      title: 'New Note',
-      component: NewNote,
-      rightButtonTitle: 'Done',
-      onRightButtonPress: () => this.handleDoneEdit(),
-      passProps: { myFirebaseRef: this.myFirebaseRef, text: "", date: "" },
-    })
+    // this.refs.nav.push({
+    //   title: 'New Note',
+    //   component: NewNote,
+    //   rightButtonTitle: 'Done',
+    //   onRightButtonPress: () => this.handleDoneEdit(),
+    //   passProps: { myFirebaseRef: this.myFirebaseRef, id: "", text: "", date: "" },
+    // })
   }
 
-  handleDoneEdit() {
-    this.refs.nav.push({
-      title: 'New Note',
-      component: NewNote,
-      rightButtonTitle: 'Done',
-      onRightButtonPress: () => {this.handleDone()},
-      passProps: { myFirebaseRef: this.myFirebaseRef, text: "", date: "" },
-    })
+  handleAbout() {
+    
   }
 
   render() {
@@ -56,6 +50,8 @@ export default class TimeLine extends React.Component {
           component: Dashboard,
           rightButtonTitle: 'New Note',
           onRightButtonPress: () => this.handleNewNote(),
+          leftButtonTitle: 'About',
+          onLeftButtonPress: () => this.handleAbout(),
           passProps: { myFirebaseRef: this.myFirebaseRef },
         }}/>
     );
