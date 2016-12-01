@@ -2,11 +2,12 @@
 
 ## Minimum Viable Product
 
-Timeline is a iOS mobile application that allows users to record daily journals. It utilizes React Native with a Redux architectural framework.
+Timeline is a iOS mobile application that allows users to record daily journals. It utilizes React Native for component rendering and Firebase to persist data.
 
-- [ ] Records
-- [ ] Add Photos to records
-- [ ] Enable use of different fonts/text styling
+- [ ] Allow user to add entries
+- [ ] Persist data/entries to a cloud database
+- [ ] Swiping right to delete content
+- [ ] Editing of existing entries
 
 ##Wireframes
 
@@ -37,7 +38,7 @@ Timeline is a iOS mobile application that allows users to record daily journals.
 
 
 ### Bonus Features (TBD)
-- [ ] Connect rails backend
+- [ ] Connect rails backend to replace Firebase
 - [ ] Add more font styling and emojis
 - [ ] Save records with time/date/weather/location
 - [ ] Search for records on dashboard
