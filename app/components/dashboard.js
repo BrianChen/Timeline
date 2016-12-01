@@ -10,66 +10,81 @@ import {
 } from 'react-native';
 console.disableYellowBox = true;
 
+import NewNote from './new_note';
+
 export default class Dashboard extends React.Component {
 
   constructor(props) {
     super(props);
-    let myFirebaseRef = this.props.myFirebaseRef
+    myFirebaseRef = this.props.myFirebaseRef
 
-    this.itemsRef = myFirebaseRef.child('items');
+    this.entriesRef = myFirebaseRef.child('entries');
 
     this.state = {
-      newTodo: '',
-      todoSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
+      text: '',
+      date: '',
+      entrieSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
     };
 
-    this.items = [];
+    this.entries = [];
+
   }
 
-  componentDidMount() {
-    this.itemsRef.on('child_added', (dataSnapshot) => {
-      this.items.push({
-        id: dataSnapshot.key,
-        text: dataSnapshot.val()
-      });
-      this.setState({
-        todoSource: this.state.todoSource.cloneWithRows(this.items)
-      });
-    });
+  // componentWillMount() {
+  //   let route = this.props.navigator.navigationContext.currentRoute;
+  //   route.onRightButtonPress = () => this.handleNewNote();
+  //   this.props.navigator.replace(route);
+  // }
 
-    this.itemsRef.on('child_removed', (dataSnapshot) => {
-      this.items = this.items.filter((x) => x.id !== dataSnapshot.key);
-      this.setState({
-        todoSource: this.state.todoSource.cloneWithRows(this.items)
-      });
-    });
+  // handleDone() {
+  //
+  // }
+
+  handleNewNote() {
+    this.props.navigator.push({
+      title: 'New Note',
+      component: NewNote,
+      rightButtonTitle: 'Done',
+      onRightButtonPress: () => {this.handleDone()},
+      passProps: { myFirebaseRef: this.myFirebaseRef, text: "", date: "" },
+    })
   }
 
-  addTodo() {
-    if (this.state.newTodo !== '') {
-      this.itemsRef.push({
-        todo: this.state.newTodo
-      });
-      this.setState({
-        newTodo: ''
-      });
-    }
-  }
+  // componentDidMount() {
+  //   this.entriesRef.on('child_added', (dataSnapshot) => {
+  //     this.entries.push({
+  //       id: dataSnapshot.key,
+  //       text: dataSnapshot.child('entries/text').val(),
+  //       date: dataSnapshot.child('entries/date').val(),
+  //     });
+  //     this.setState({
+  //       todoSource: this.state.todoSource.cloneWithRows(this.items)
+  //     });
+  //   });
+  //   debugger;
+  //
+  //   this.itemsRef.on('child_removed', (dataSnapshot) => {
+  //     this.items = this.items.filter((x) => x.id !== dataSnapshot.key);
+  //     this.setState({
+  //       todoSource: this.state.todoSource.cloneWithRows(this.items)
+  //     });
+  //   });
+  // }
 
-  removeTodo(rowData) {
-    this.itemsRef.child(rowData.id).remove();
-  }
+
+  // removeTodo(rowData) {
+  //   this.itemsRef.child(rowData.id).remove();
+  // }
 
   renderRow(rowData) {
     return(
       <TouchableHighlight
         underlayColor='#dddddd'
-        onPress={() => this.removeTodo(rowData)}>
+        onPress={() => this.removeEntrie(rowData)}>
         <View>
           <View style={styles.row}>
-            <Text style={styles.todoText}>{rowData.text.todo}</Text>
+            <Text style={styles.entrieText}>{rowData.text}</Text>
           </View>
-          <View style={styles.separator} />
         </View>
       </TouchableHighlight>
     )
@@ -78,46 +93,38 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <View style={styles.appContainer}>
-        <View style={styles.inputContainer}>
-          <TextInput style={styles.input} onChangeText={(text) => this.setState({newTodo: text})} value={this.state.newTodo}/>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={() => this.addTodo()}
-            underlayColor='#dddddd'>
-            <Text style={styles.btnText}>Add!</Text>
-          </TouchableHighlight>
-        </View>
+        <Text>Hello</Text>
         <ListView
-          dataSource={this.state.todoSource}
-          renderRow={this.renderRow.bind(this)}/>
+          dataSource={this.state.entrieSource}
+          renderRow={this.renderRow.bind(this)}
+        />
       </View>
     );
   }
+  // render() {
+  //   return (
+  //     <View style={styles.appContainer}>
+  //       <View style={styles.inputContainer}>
+  //         <TextInput style={styles.input} onChangeText={(text) => this.setState({newTodo: text})} value={this.state.newTodo}/>
+  //         <TouchableHighlight
+  //           style={styles.button}
+  //           onPress={() => this.addTodo()}
+  //           underlayColor='#dddddd'>
+  //           <Text style={styles.btnText}>Add!</Text>
+  //         </TouchableHighlight>
+  //       </View>
+  //       <ListView
+  //         dataSource={this.state.todoSource}
+  //         renderRow={this.renderRow.bind(this)}/>
+  //     </View>
+  //   );
+  // }
 }
 
 const styles = StyleSheet.create({
   appContainer:{
     flex: 1,
-  },
-  inputContainer:{
-    paddingTop: 100,
-    marginTop: 5,
-    padding: 10,
-    flexDirection: 'row',
-  },
-  button:{
-    height: 36,
-    flex: 2,
-    flexDirection: 'row',
-    backgroundColor: '#48afdb',
-    justifyContent: 'center',
-    // color: '#FFFFFF',
-    borderRadius: 4
-  },
-  btnText:{
-    fontSize: 18,
-    // color: '#fff',
-    marginTop: 6
+    marginTop: 63,
   },
   input: {
     height: 36,

@@ -3,7 +3,8 @@ import {
   AppRegistry,
   StyleSheet,
   View,
-  NavigatorIOS
+  NavigatorIOS,
+  Keyboard
 } from 'react-native';
 
 import Firebase from 'firebase';
@@ -30,16 +31,17 @@ export default class TimeLine extends React.Component {
       component: NewNote,
       rightButtonTitle: 'Done',
       onRightButtonPress: () => this.handleDoneEdit(),
-      passProps: { myFirebaseRef: this.myFirebaseRef },
+      passProps: { myFirebaseRef: this.myFirebaseRef, text: "", date: "" },
     })
   }
 
   handleDoneEdit() {
     this.refs.nav.push({
-      title: "Timeline",
-      component: Dashboard,
-      rightButtonTitle: 'New Note',
-      onRightButtonPress: () => this.handleNewNote(),
+      title: 'New Note',
+      component: NewNote,
+      rightButtonTitle: 'Done',
+      onRightButtonPress: () => {this.handleDone()},
+      passProps: { myFirebaseRef: this.myFirebaseRef, text: "", date: "" },
     })
   }
 
