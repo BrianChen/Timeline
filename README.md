@@ -1,7 +1,7 @@
 # Timeline
 
 [Timeline live][Appetize.io]
-[Appetize.io]: https://appetize.io/app/yc4q39f93rw4748dpuhumudgk4?device=iphone5s&scale=75&orientation=portrait&osVersion=9.3
+[Appetize.io]: https://appetize.io/app/yc4q39f93rw4748dpuhumudgk4?device=iphone6s&scale=75&orientation=portrait&osVersion=9.3
 
 Timeline is journal/diary application that allows users to record, delete and edit existing entries. The data is securely persisted onto a cloud base database.  Timeline was implemented with React Native for component rendering and Firebase as the database.
 

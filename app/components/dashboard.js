@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 console.disableYellowBox = true;
 import Swipeout from 'react-native-swipeout';
+import Icon from 'react-native-vector-icons';
 
 import NewNote from './new_note';
 import AboutModal from './about_modal';
@@ -34,8 +35,10 @@ export default class Dashboard extends React.Component {
 
   componentWillMount() {
     let route = this.props.navigator.navigationContext.currentRoute;
+    let newNoteIcon = <Icon name='rocket' size={12} color="black" />;
     route.onRightButtonPress = () => this.handleNewNote();
     route.onLeftButtonPress = () => this.handleAbout();
+    route.rightButtonIcon = newNoteIcon.getImageSource;
     this.props.navigator.replace(route);
   }
 

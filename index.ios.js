@@ -4,12 +4,14 @@ import {
   StyleSheet,
   View,
   NavigatorIOS,
-  Keyboard
+  Keyboard,
+  Image
 } from 'react-native';
 
 import Firebase from 'firebase';
 import Dashboard from './app/components/dashboard';
 import NewNote from './app/components/new_note';
+import Icon from 'react-native-vector-icons/FontAwesome';
 console.disableYellowBox = true;
 
 export default class TimeLine extends React.Component {
@@ -26,20 +28,15 @@ export default class TimeLine extends React.Component {
   }
 
   handleNewNote() {
-    // this.refs.nav.push({
-    //   title: 'New Note',
-    //   component: NewNote,
-    //   rightButtonTitle: 'Done',
-    //   onRightButtonPress: () => this.handleDoneEdit(),
-    //   passProps: { myFirebaseRef: this.myFirebaseRef, id: "", text: "", date: "" },
-    // })
+
   }
 
   handleAbout() {
-    
+
   }
 
   render() {
+    let NewNoteIcon = <Icon name="rocket" size={12} color='black' />;
     return (
       <NavigatorIOS
         ref="nav"
@@ -48,7 +45,7 @@ export default class TimeLine extends React.Component {
         initialRoute = {{
           title: "Timeline",
           component: Dashboard,
-          rightButtonTitle: 'New Note',
+          rightButtonIcon: NewNoteIcon.getImageSource,
           onRightButtonPress: () => this.handleNewNote(),
           leftButtonTitle: 'About',
           onLeftButtonPress: () => this.handleAbout(),
