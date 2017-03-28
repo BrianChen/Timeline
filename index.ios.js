@@ -45,7 +45,7 @@ export default class TimeLine extends React.Component {
         initialRoute = {{
           title: "Timeline",
           component: Dashboard,
-          rightButtonIcon: NewNoteIcon.getImageSource,
+          rightButtonTitle: 'New Note',
           onRightButtonPress: () => this.handleNewNote(),
           leftButtonTitle: 'About',
           onLeftButtonPress: () => this.handleAbout(),
